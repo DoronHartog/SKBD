@@ -1,0 +1,22 @@
+@startuml Architecture
+rectangle "Layered architecture" {
+    package "Frontend" {
+    [Ionic PWA]
+    }
+
+    rectangle {
+        rectangle {
+        [Spring boot webserver]
+        }
+
+
+        database "MySql database" {
+            [Data]
+        }
+    }
+}
+
+[Ionic PWA] --> [Spring boot webserver]
+[Spring boot webserver] --> [Ionic PWA]
+[Spring boot webserver] --> [Data]
+@enduml

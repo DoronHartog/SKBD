@@ -1,0 +1,89 @@
+@startuml
+
+rectangle Sqooshj {
+  rectangle LobbyModel {
+    rectangle REST_controller_example {
+      class LobbyController {
+        repository : LobbyRepository
+        findLobbyById() : Lobby
+      }
+      
+      class LobbyRepository {
+        findById() : Lobby
+      }
+      LobbyController o-- LobbyRepository
+    }
+    LobbyController o-- Lobby
+    LobbyRepository o-- Lobby
+
+
+    class Lobby {
+      name : String
+      code : String
+      lobbySettings : LobbySettings
+      players : Player[]
+      addPlayer() : void
+      removePlayer() : void
+      patchLobbySettings() : void
+    }
+
+    rectangle Builder_example {
+      class Player {
+        Player(PlayerBuilder)
+        name : String
+        role : Role
+      }
+
+      class PlayerBuilder {
+        name : String
+        role : Role
+        name(String name) : PlayerBuilder
+        role(Role role) : PlayerBuilder
+        build() : Player
+      }
+    }
+
+    enum Role {
+      ADMIN
+      PLAYER
+    }
+
+    class LobbySettings {
+        language: Language
+        difficulty: Difficulty
+    }
+
+    Lobby o-- LobbySettings
+    Lobby o-- Player
+    Player o-- PlayerBuilder
+    Player o-- Role
+  }
+
+  rectangle GameModel {
+    class Game {
+      events : Event[]
+      memoryCards : MemoryCard[]
+      addEvent(Event event) : void
+      generateEvent(): void
+    }
+
+    class Event {
+      actions : Action[]
+    }
+
+    class Action {
+      description : String
+    }
+
+    class MemoryCard {
+      name : String
+      cardContent : byte[]
+    }
+
+    Game o-- Event
+    Game o-- MemoryCard
+    Event o-- Action
+  }
+}
+
+@enduml

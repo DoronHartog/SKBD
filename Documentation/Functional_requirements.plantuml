@@ -2,29 +2,33 @@
 left to right direction
 
 
-Player <|-- Lobby_Creator
+Player <|-- Player_ADMIN
 
 rectangle Lobby {
   usecase "Join lobby" as L_UC1
   usecase "Create lobby" as L_UC2
-  usecase "Change name" as L_UC3
+  usecase "Change settings" as L_UC3
   usecase "Manage players" as L_UC4
   usecase "Start game" as L_UC5
 }
 
-rectangle SKBD_Memory {
+rectangle SQOOSHJ_GAME {
   usecase "Select cards" as UC1
-  usecase "Get shown drink" as UC2
+  usecase "Handing out a drink" as UC3
+  usecase "Show drink to player" as UC2
+  usecase "Generate random event" as UC4
 }
 
 Player --> L_UC1
-Lobby_Creator --> L_UC2
-Lobby_Creator --> L_UC3
-Lobby_Creator --> L_UC4
-Lobby_Creator --> L_UC5
+Player_ADMIN --> L_UC2
+Player_ADMIN --> L_UC3
+Player_ADMIN --> L_UC4
+Player_ADMIN --> L_UC5
 
 Player --> UC1
-Player --> UC2
+Player --> UC3
 
+System --> UC2
+System --> UC4
 
 @enduml

@@ -22,6 +22,7 @@ rectangle Sqooshj {
       code : String
       lobbySettings : LobbySettings
       players : Player[]
+      create(): string
       addPlayer() : void
       removePlayer() : void
       patchLobbySettings() : void
@@ -76,12 +77,24 @@ rectangle Sqooshj {
     }
 
     class MemoryCard {
+      memoryCardContent: MemoryCardContent
+      state : State
+    }
+
+    class MemoryCardContent {
       name : String
       cardContent : byte[]
     }
 
+    enum MemoryCardState {
+      TURNED
+      UNTURNED
+    }
+
     Game o-- Event
     Game o-- MemoryCard
+    MemoryCard o-- MemoryCardContent
+    MemoryCard o-- MemoryCardState
     Event o-- Action
   }
 }

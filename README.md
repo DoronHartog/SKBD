@@ -1,6 +1,6 @@
-# SKBD Drank App
+# sqooshj (SKBD Productions)
 
-SKBD drank app
+sqooshj
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
